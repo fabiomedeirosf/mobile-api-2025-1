@@ -33,18 +33,23 @@ public class ClienteController {
 		List<Cliente> resultadoBusca = new ArrayList<Cliente>();
 
 		//se nao tem o parametro retorna toda a lista
-		if( (nome != null && !nome.isEmpty())) {
+		if( (nome != null && idade != null)) {
 			for(Cliente c : this.listaClientes) {
 				
-				if(c.getNome().toUpperCase().startsWith(nome.toUpperCase())) {
+				if(c.getNome().toUpperCase().startsWith(nome.toUpperCase())
+						&& c.getIdade().equals(idade)) {
 					resultadoBusca.add(c);
 				}
 			}
-		}
-		
-		if(idade != null) {
+		} else if (idade != null) {
 			for(Cliente c : this.listaClientes) {
 				if(c.getIdade().equals(idade)) {
+					resultadoBusca.add(c);
+				}
+			}
+		} else {
+			for(Cliente c : this.listaClientes) {
+				if(c.getNome().toUpperCase().startsWith(nome.toUpperCase())) {
 					resultadoBusca.add(c);
 				}
 			}
